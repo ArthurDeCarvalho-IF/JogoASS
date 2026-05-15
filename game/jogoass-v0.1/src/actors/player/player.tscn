@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://omdq3fagkp31"]
+
+[ext_resource type="Texture2D" uid="uid://cv4e2run6n0yb" path="res://assets/sprites/icon.svg" id="1_1h0t4"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_tps1c"]
+script/source = "using Godot;
+using System;
+
+public partial class Player : Node
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_posfq"]
+size = Vector2(119.49999, 118.49999)
+
+[node name="Player" type="CharacterBody2D" unique_id=2011160916]
+script = SubResource("CSharpScript_tps1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166358214]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_1h0t4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=964555653]
+position = Vector2(0.024999619, -0.07499962)
+scale = Vector2(0.1, 0.1)
+shape = SubResource("RectangleShape2D_posfq")

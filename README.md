@@ -1,4 +1,4 @@
-# Jogo de A.S.S.
+# Jogo de Ambiente Saúde e Segurança (ASS)
 
 Repositório para o projeto de jogo da matéria Ambiente, Saúde e Segurança, do Instituto Federal do Amazonas _Campus_ Manacapuru.
 
@@ -9,14 +9,15 @@ Na parte mais técnica: desenvolver um jogo de aventura e exploração que consi
 - Narrativa;
 - Mecânicas de progressão;
 - Elementos do folclore amazônico;
-- Sistema dinâmico de restauração ambiental.
+- Sistema dinâmico de restauração ambiental;
+- Mensagem de conscientização sobre os problemas da Amazônia.
 
 ## Tecnologias Utilizadas
 
 | Função                   | Tecnologias             |
 | ------------------------ | ----------------------- |
 | Estilização (Site)       | CSS, SCSS               |
-| Programação (Site)       | JavaScript, TypeScript  |
+| Programação (Site)       | C#, .NET, Godot 4.x     |
 | Gerenciamento do projeto | Git, GitHub, GitHub CLI |
 
 ## Estrutura de Pastas

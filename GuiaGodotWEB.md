@@ -1,76 +1,84 @@
-# Guia Técnico de Desenvolvimento: Projeto Web Game (IFAM)
+Excelente iniciativa. Migrar o foco de **Web** para **PC (Desktop)** com C# e .NET 10 traz uma liberdade imensa, especialmente no que diz respeito à performance, acesso ao sistema de arquivos e uso de bibliotecas nativas.
 
-Este documento serve como a "Fonte da Verdade" para o grupo de programação (4 membros). Ele detalha a stack tecnológica, o fluxo de trabalho e as restrições específicas para o desenvolvimento do nosso jogo Pixel Art 2D Top-Down focado exclusivamente em **Web**.
+Aqui está a reestruturação do seu `.md`, adaptada para um ambiente de alta performance e removendo as amarras do WebAssembly:
 
 ---
 
-## 1. Stack Tecnológica (Aprovada)
+# Guia Técnico de Desenvolvimento: Projeto Game 2D (IFAM)
+
+Este documento é a **"Fonte da Verdade"** para o grupo de programação. Ele detalha a stack, o fluxo de trabalho e as diretrizes para o desenvolvimento do nosso jogo Pixel Art 2D Top-Down focado exclusivamente em **Desktop (Windows/Linux)**.
+
+---
+
+## 1. Stack Tecnológica (Atualizada)
 
 - **Engine:** Godot 4.x (Versão .NET/C#).
-- **Linguagem:** C# (Utilizando .NET 10).
-- **Renderizador:** Compatibility (OpenGL 3 / WebGL 2) - **Obrigatório para Web**.
-- **Backend & Hospedagem:** Firebase (Hosting, Firestore e Auth).
+- **Linguagem:** C# (Utilizando **.NET 10**).
+- **Renderizador:** **Forward+** (Clustered Forward) - _Melhor suporte para luzes, sombras e efeitos modernos no PC_.
+- **Backend & Local Data:** - **Firebase:** Auth e Firestore (via SDK C# nativo ou REST).
+- **Local:** SQLite ou JSON (para configurações e cache offline).
+
 - **Versionamento:** Git (GitHub) via Terminal/CLI.
 
 ---
 
 ## 2. Configuração do Ambiente de Desenvolvimento
 
-Cada um dos 4 programadores deve garantir que o comando `dotnet --version` retorne `10.x` no terminal.
+Cada programador deve garantir a padronização das ferramentas para evitar erros de compilação cruzada.
 
 ### Instalações Necessárias
 
-1.  **Godot .NET Edition:** Certifique-se de usar a versão Mono.
-2.  **SDK .NET 10:** Configurado no PATH do sistema.
-3.  **WASM Tools:** Execute `dotnet workload install wasm-tools` para habilitar a compilação web.
-4.  **VS Code + C# Dev Kit:** Editor externo recomendado para melhor suporte ao C#.
+1. **Godot .NET Edition:** Versão estável mais recente (4.x Mono).
+2. **SDK .NET 10:** Obrigatório para suporte às features mais recentes da linguagem.
+3. **IDE Recomendada:** VS Code com **C# Dev Kit** ou Visual Studio 2022+.
+4. **Configuração de Build:** Certifique-se de que o MSBuild está configurado corretamente no Editor Settings da Godot.
 
 ---
 
-## 3. Arquitetura de Código: Web vs. PC
+## 3. Arquitetura de Código: Foco em Desktop
 
-Diferente do desenvolvimento para Desktop, nossa arquitetura deve respeitar as limitações do navegador:
+Sem as limitações do navegador, podemos explorar melhor o hardware e o sistema:
 
-### O que muda no C#
+### O que muda no C# (PC vs Web)
 
-- **Assincronismo:** Todas as chamadas ao Firebase devem ser `async/await`. Nunca trave a Main Thread, ou o navegador marcará o jogo como "Sem Resposta".
-- **Sistema de Arquivos:** Não use `System.IO` puro. Utilize a API da Godot (`FileAccess`) ou, preferencialmente, salve o estado do jogo no **Firebase**.
-- **Gerenciamento de Memória:** O navegador limita a RAM da aba. Evite carregar todos os assets de uma vez; use carregamento dinâmico de cenas.
-
----
-
-## 4. Fluxo de Trabalho e Git
-
-Com 4 programadores e 4 artistas, a organização é vital para evitar conflitos:
-
-1. **Estrutura de Cenas:** Cada objeto (Player, Inimigo, Bau) DEVE ser uma cena `.tscn` independente.
-2. **Git Rules:**
-   - Nunca edite a cena principal do nível ao mesmo tempo que outro colega.
-   - Sempre dê `Pull` antes de começar e `Push` ao terminar uma tarefa pequena.
-   - Mantenha a pasta `.godot/` e `bin/` no `.gitignore`.
-3. **Namespaces em C#:** Organizem o código em namespaces (ex: `Game.Player`, `Game.UI`, `Game.Network`) para evitar colisões de nomes de classes.
+- **Multithreading Real:** Podemos usar `Task.Run()` e threads em segundo plano para processamento pesado (geração procedural, IA complexa) sem as restrições de COOP/COEP da Web.
+- **Sistema de Arquivos:** Uso total de `System.IO`. Podemos criar logs locais, salvar replays e gerenciar arquivos de configuração em `user://` (AppData/Local).
+- **Performance:** Menos preocupação com o tamanho do binário final. Podemos usar bibliotecas NuGet pesadas se necessário.
 
 ---
 
-## 5. Especificações de Pixel Art (Diretrizes para os Artistas)
+## 4. Fluxo de Trabalho e Estrutura (Actors & System)
 
-Para manter a fidelidade visual no navegador:
+Para um grupo de 4 programadores, a **composição** é a regra de ouro:
 
-- **Texture Filter:** Deve ser configurado como **Nearest** (Geral e por Sprite).
-- **Resolução Base:** Recomendado $320 \times 180$ ou $640 \times 360$ (Escalável para 16:9).
-- **Y-Sorting:** Ativar `Z Index -> As Relative` e `Y Sort Enabled` no Node pai para garantir que o Player passe por trás/frente de objetos corretamente.
+### Organização de Cenas
+
+- **Padronização por Domínio:** Cada entidade é uma pasta contendo `.tscn`, `.cs` e recursos específicos (ex: `res://src/actors/player/`).
+- **Componentização:** Use o padrão de "Nós de Componente".
+- _Exemplo:_ Um nó `HealthComponent.cs` que pode ser arrastado tanto para o Player quanto para o Inimigo.
+
+### Git Rules (PC Edition)
+
+1. **LFS (Large File Storage):** Ativar Git LFS para os assets de arte e áudio.
+2. **Branches:** Trabalhar com `feature/nome-da-tarefa`. Nunca fazer push direto na `main`.
+3. **Merge Conflicts:** Evitem editar o mesmo `.tscn` simultaneamente. Priorizem editar scripts `.cs` separados.
 
 ---
 
-## 6. Integração Firebase
+## 5. Especificações Técnicas (Programação & Arte)
 
-- **Método:** Utilizaremos a **REST API** do Firebase via classe `HTTPRequest` da Godot. Isso é mais leve para WebAssembly do que importar o SDK completo do Firebase C#.
-- **Hospedagem:** O deploy final será via `firebase deploy`. O arquivo `firebase.json` deve conter os headers de COOP/COEP para permitir que o multithreading da Godot 4 funcione.
+Diretrizes para garantir o "feeling" de um jogo de PC de alta qualidade:
 
----
+- **Input System:** Usar o `Input Map` da Godot suportando Teclado + Mouse e Gamepad (XInput).
+- **Pixel Art Fidelity:**
+- **Texture Filter:** `Nearest` global.
+- **Window Mode:** Suporte a _Borderless Fullscreen_ e _Window Resizing_.
+- **Y-Sorting:** Obrigatório no `Node2D` pai dos atores para profundidade visual.
 
-## 7. Ressalvas e Dicas
+- **Resolução:** O jogo deve ser projetado para $1920 \times 1080$ (Full HD) nativo ou escalado perfeitamente a partir de uma base menor.
 
-- **Áudio na Web:** O jogo começará mudo. Implemente uma tela de "Clique para Iniciar" para satisfazer a política de segurança dos navegadores.
-- **Teste Constante:** Façam um export para Web ao final de cada sprint. Bugs que funcionam no PC mas quebram no navegador são comuns.
-- **Singletons:** Usem um `GameManager.cs` (Autoload) para gerenciar o estado global e a comunicação com o Firebase.
+## 7. Controle de Qualidade (QA)
+
+- **Logs de Erro:** Implementar um sistema que gera um arquivo `.log` em caso de crash (facilita o debug entre os membros do grupo).
+- **Stress Test:** Como o foco é PC, testar o jogo em diferentes resoluções e taxas de atualização (60Hz, 144Hz). Use `delta` em todos os cálculos de movimento para garantir independência de framerate.
+- **Code Review:** Antes de cada merge, pelo menos um outro programador deve revisar o C# para garantir que os padrões de arquitetura estão sendo seguidos.
