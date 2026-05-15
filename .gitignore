@@ -1,0 +1,4 @@
+
+# Godot 4+ specific ignores
+game/jogoass-v0.1/.godot/
+game/jogoass-v0.1/android/
