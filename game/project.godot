@@ -81,6 +81,17 @@ menu_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="UI"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Projectile"
+2d_physics/layer_4="Item"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Door"
+2d_physics/layer_7="Wall"
+2d_physics/layer_8="Ground"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
