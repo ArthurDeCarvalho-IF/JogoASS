@@ -2,8 +2,9 @@ using Godot;
 using System;
 
 public partial class Player : CharacterBody2D
-{
-	public const float Speed = 30f;
+{	
+	[Export]
+	public float Speed = 30f;
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;

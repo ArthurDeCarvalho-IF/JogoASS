@@ -1,10 +1,4 @@
-Excelente iniciativa. Migrar o foco de **Web** para **PC (Desktop)** com C# e .NET 10 traz uma liberdade imensa, especialmente no que diz respeito à performance, acesso ao sistema de arquivos e uso de bibliotecas nativas.
-
-Aqui está a reestruturação do seu `.md`, adaptada para um ambiente de alta performance e removendo as amarras do WebAssembly:
-
----
-
-# Guia Técnico de Desenvolvimento: Projeto Game 2D (IFAM)
+# Guia Técnico de Desenvolvimento
 
 Este documento é a **"Fonte da Verdade"** para o grupo de programação. Ele detalha a stack, o fluxo de trabalho e as diretrizes para o desenvolvimento do nosso jogo Pixel Art 2D Top-Down focado exclusivamente em **Desktop (Windows/Linux)**.
 
@@ -31,15 +25,14 @@ Cada programador deve garantir a padronização das ferramentas para evitar erro
 1. **Godot .NET Edition:** Versão estável mais recente (4.x Mono).
 2. **SDK .NET 10:** Obrigatório para suporte às features mais recentes da linguagem.
 3. **IDE Recomendada:** VS Code com **C# Dev Kit** ou Visual Studio 2022+.
-4. **Configuração de Build:** Certifique-se de que o MSBuild está configurado corretamente no Editor Settings da Godot.
 
 ---
 
 ## 3. Arquitetura de Código: Foco em Desktop
 
-Sem as limitações do navegador, podemos explorar melhor o hardware e o sistema:
+Sem as limitações de outros dispositivos, podemos explorar melhor o hardware e o sistema:
 
-### O que muda no C# (PC vs Web)
+### O que muda no C#
 
 - **Multithreading Real:** Podemos usar `Task.Run()` e threads em segundo plano para processamento pesado (geração procedural, IA complexa) sem as restrições de COOP/COEP da Web.
 - **Sistema de Arquivos:** Uso total de `System.IO`. Podemos criar logs locais, salvar replays e gerenciar arquivos de configuração em `user://` (AppData/Local).

@@ -16,8 +16,8 @@ Na parte mais técnica: desenvolver um jogo de aventura e exploração que consi
 
 | Função                   | Tecnologias             |
 | ------------------------ | ----------------------- |
-| Estilização (Site)       | CSS, SCSS               |
-| Programação (Site)       | C#, .NET, Godot 4.x     |
+| Estilização              | LibreSprite             |
+| Programação              | C#, .NET, Godot 4.6     |
 | Gerenciamento do projeto | Git, GitHub, GitHub CLI |
 
 ## Estrutura de Pastas

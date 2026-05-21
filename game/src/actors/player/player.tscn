@@ -24,6 +24,8 @@ public partial class Player : Node
 size = Vector2(119.49999, 28.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=2011160916]
+collision_layer = 2
+collision_mask = 0
 script = SubResource("CSharpScript_tps1c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166358214]
