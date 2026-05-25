@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc0gdqsvghkaw"
-path="res://.godot/imported/tile_floresta.png-a023e826ba2e66edb25964a743971afa.ctex"
+uid="uid://dlrdy4yg4yxpf"
+path="res://.godot/imported/autotile_grama.png-aac17a4ff79b1e9bbf2e3ee9d6271a52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/tile_floresta.png"
-dest_files=["res://.godot/imported/tile_floresta.png-a023e826ba2e66edb25964a743971afa.ctex"]
+source_file="res://assets/sprites/tiles/autotile_grama.png"
+dest_files=["res://.godot/imported/autotile_grama.png-aac17a4ff79b1e9bbf2e3ee9d6271a52.ctex"]
 
 [params]
 

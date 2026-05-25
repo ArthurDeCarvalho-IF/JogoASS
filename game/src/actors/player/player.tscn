@@ -29,10 +29,11 @@ collision_mask = 0
 script = SubResource("CSharpScript_tps1c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166358214]
+position = Vector2(0, -5.9999995)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_1h0t4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=964555653]
-position = Vector2(0.024999619, 4.425)
+position = Vector2(1.8626451e-09, -0.9999995)
 scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_posfq")
