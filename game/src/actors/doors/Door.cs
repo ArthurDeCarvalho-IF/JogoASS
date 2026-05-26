@@ -23,12 +23,12 @@ public partial class Door : Area2D
     }
     public void OnBodyEntered(Node2D Body)
     {
-        if (!(Body is Player) && !DoorsManager.Instance.canTeleport) return;
+        if (Body is not Player && !DoorsManager.Instance.canTeleport) return;
         DoorsManager.Instance.startTeleport(myID);
     }
     public void OnBodyExited(Node2D Body)
     {
-        if (!(Body is Player)) return;
+        if (Body is not Player) return;
         DoorsManager.Instance.canTeleport = true;
     }
     public void ChangePlayerGlobalPosition()
