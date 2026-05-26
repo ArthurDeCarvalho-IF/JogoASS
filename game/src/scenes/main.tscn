@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://btafjmkrqfunp"]
+
+[ext_resource type="Script" uid="uid://cko4a5i0hdkel" path="res://src/scenes/Main.cs" id="1_kkvs4"]
+
+[node name="Main" type="Node" unique_id=1718503194]
+script = ExtResource("1_kkvs4")
+
+[node name="UI" type="Control" parent="." unique_id=1630565964]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scene" type="Node2D" parent="." unique_id=1543273408]
