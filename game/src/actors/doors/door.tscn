@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtwxoaovknh1g"]
+
+[ext_resource type="Script" uid="uid://bw45flxkjrgq0" path="res://src/actors/doors/Door.cs" id="1_hq4qs"]
+
+[node name="Door" type="Area2D" unique_id=972642709]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_hq4qs")
+myID = 1
+targetID = 2
+ownerScene = "uid://d30ud8o4hlf6a"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

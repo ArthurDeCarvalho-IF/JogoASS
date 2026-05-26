@@ -1,39 +1,75 @@
 [gd_scene format=3 uid="uid://omdq3fagkp31"]
 
 [ext_resource type="Texture2D" uid="uid://cv4e2run6n0yb" path="res://assets/sprites/icon.svg" id="1_1h0t4"]
+[ext_resource type="Script" uid="uid://shjj3da3eshu" path="res://src/actors/player/Player.cs" id="1_hod3v"]
+[ext_resource type="Script" uid="uid://td0p3ko4poqn" path="res://src/actors/player/states/Idle.cs" id="2_6llfm"]
+[ext_resource type="Script" uid="uid://c8tsnbo17h2uc" path="res://core/state_machine/StateMachine.cs" id="3_dmu6e"]
+[ext_resource type="Script" uid="uid://cel12hh6skpqm" path="res://src/actors/player/states/Run.cs" id="3_hod3v"]
+[ext_resource type="Script" uid="uid://dlmmqs3sb735t" path="res://src/actors/player/states/Debug.cs" id="4_dmu6e"]
 
-[sub_resource type="CSharpScript" id="CSharpScript_tps1c"]
-script/source = "using Godot;
-using System;
+[sub_resource type="AtlasTexture" id="AtlasTexture_hod3v"]
+atlas = ExtResource("1_1h0t4")
+region = Rect2(0, 0, 128, 128)
 
-public partial class Player : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-}
-"
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmu6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hod3v")
+}],
+"loop": true,
+"name": &"debug",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hod3v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hod3v")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_posfq"]
 size = Vector2(119.49999, 28.5)
 
-[node name="Player" type="CharacterBody2D" unique_id=2011160916]
+[node name="Player" type="CharacterBody2D" unique_id=2011160916 node_paths=PackedStringArray("Sprite", "Collision")]
 collision_layer = 2
 collision_mask = 0
-script = SubResource("CSharpScript_tps1c")
+script = ExtResource("1_hod3v")
+Sprite = NodePath("AnimatedSprite2D")
+Collision = NodePath("CollisionShape2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166358214]
-position = Vector2(0, -5.9999995)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1344499979]
+position = Vector2(0, 4.000001)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_1h0t4")
+sprite_frames = SubResource("SpriteFrames_dmu6e")
+animation = &"debug"
+autoplay = "idle"
+offset = Vector2(0, -100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=964555653]
 position = Vector2(1.8626451e-09, -0.9999995)
 scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_posfq")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1087246689 node_paths=PackedStringArray("BeginState")]
+script = ExtResource("3_dmu6e")
+BeginState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=601383356]
+script = ExtResource("2_6llfm")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=139980235]
+script = ExtResource("3_hod3v")
+
+[node name="Debug" type="Node" parent="StateMachine" unique_id=854505384]
+script = ExtResource("4_dmu6e")

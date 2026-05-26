@@ -3,33 +3,23 @@ using System;
 
 public partial class Player : CharacterBody2D
 {	
-	[Export]
-	public float Speed = 30f;
+	public static Player Instance {get; private set;}
+	[Export] public float MoveSpd = 40f;
+	[Export] public AnimatedSprite2D Sprite;
+	[Export] public CollisionShape2D Collision;
+	[Export] public float acceleration = 3000f;
+	[Export] public float fricttion = 5000f;
+	public Vector2 velocity;
+	public Vector2 direction;
+	public bool DebugMode;
+	public bool back;
+
+	public override void _EnterTree() {Instance = this;}
+
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("game_left", "game_right", "game_up", "game_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-		if (direction != Vector2.Zero)
-		{
-			velocity.Y = direction.Y * Speed;
-		}
-		else
-		{
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
+		direction = Input.GetVector("game_left", "game_right", "game_up", "game_down");
+		DebugMode = Input.IsActionJustPressed("debug_mode");
+		back = Input.IsActionJustPressed("game_back");
 	}
 }
