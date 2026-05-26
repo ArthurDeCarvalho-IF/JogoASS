@@ -507,7 +507,7 @@ tile_set = SubResource("TileSet_6ce1q")
 
 [node name="Player" parent="." unique_id=2011160916 instance=ExtResource("3_f8lrb")]
 y_sort_enabled = true
-position = Vector2(-57, 16)
+position = Vector2(44, -41)
 collision_mask = 80
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=154381561]
@@ -531,8 +531,8 @@ color = Color(0.5117, 0.47300002, 0.86, 1)
 [node name="Doors" type="Node" parent="." unique_id=726178034]
 
 [node name="Door" parent="Doors" unique_id=972642709 instance=ExtResource("5_1onhx")]
+position = Vector2(56, -80)
 targetScene = "uid://b6vhmj01xhvl5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/Door" unique_id=1213242249]
-position = Vector2(56, -78.5)
 shape = SubResource("RectangleShape2D_1onhx")

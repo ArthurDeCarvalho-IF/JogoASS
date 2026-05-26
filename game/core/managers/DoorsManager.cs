@@ -8,34 +8,44 @@ public partial class DoorsManager : Node
     public static DoorsManager Instance {get; private set;}
 
     public int moveToDoor = 0;
-    public bool canTeleport = false;
+    public bool canTeleport = true;
     public override void _EnterTree()
     {
         Instance = this;
     }
 
-    public void RegisterDoor(int id, string ownerScene, int targetID)
+    public void RegisterDoor(int ownerID, int targetID, string ownerScene, Vector2 ownerPosition)
     {
-        doorsInfos[id] = new DoorData(ownerScene,targetID);
+        doorsInfos[ownerID] = new DoorData(targetID,ownerScene, ownerPosition);
         GD.Print(doorsInfos);
     }
 
-    public void startTeleport(int id)
+    public void startTeleport(int ID)
     {
+        if (!canTeleport) return;
         canTeleport = false;
-        GetTree().ChangeSceneToFile(doorsInfos[id].TargetScene);
-        GD.Print("de: "+id +" | para: "+doorsInfos[id].TargetID +" | por: "+doorsInfos[id].TargetScene);
+        
+        DoorData doorInfos = doorsInfos[ID];
+
+        moveToDoor = doorInfos.TargetID;
+
+        // fade out 
+        GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile,doorInfos.OwnerScenePath);
+        // fade in
+        GD.Print("de: "+ID +" | para: "+doorInfos.TargetID +" | por: "+doorInfos.OwnerScenePath +" | global pos: "+doorInfos.OwnerGlobalPosition);
     }
 }
 
 public readonly struct DoorData
 {
-    public readonly string TargetScene;
+    public readonly string OwnerScenePath;
     public readonly int TargetID;
-    public DoorData(string scenePath, int targetID)
+    public readonly Vector2 OwnerGlobalPosition;
+    public DoorData(int targetID,string ownerScenePath, Vector2 ownerPosition)
     {
-        TargetScene = scenePath;
+        OwnerScenePath = ownerScenePath;
         TargetID = targetID;
+        OwnerGlobalPosition = ownerPosition;
     }
 
 }
