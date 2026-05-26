@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="jogoass"
-run/main_scene="uid://d30ud8o4hlf6a"
+run/main_scene="uid://btafjmkrqfunp"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://assets/sprites/icon.svg"
 
 [autoload]
 
 DoorManager="*uid://d31ku3xd7gijr"
+SceneManager="*uid://fu7e7uqq2i1i"
 
 [display]
 
