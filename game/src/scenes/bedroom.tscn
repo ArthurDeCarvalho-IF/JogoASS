@@ -511,7 +511,7 @@ position = Vector2(44, -41)
 collision_mask = 80
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=154381561]
-zoom = Vector2(4, 4)
+zoom = Vector2(8, 8)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D" unique_id=2032428130]
