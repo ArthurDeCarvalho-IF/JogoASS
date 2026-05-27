@@ -19,6 +19,7 @@ config/icon="res://assets/sprites/icon.svg"
 
 DoorManager="*uid://d31ku3xd7gijr"
 SceneManager="*uid://fu7e7uqq2i1i"
+UserDataManager="*uid://de4x56yvxyv1"
 
 [display]
 
