@@ -16,6 +16,27 @@ using System;
 /// </example>r
 public sealed partial class SceneManager : Node
 {
+
+    #region Signals
+    /// <summary>
+    /// Evento para quando tiver uma cena 2D carregando.
+    /// </summary>
+    public static event Action<Node2D> OnScene2DLoaded;
+    /// <summary>
+    /// Evento para quando tiver uma cena 2D descarregando.
+    /// </summary>
+    public static event Action<Node2D> OnScene2DUnloading;
+
+    /// <summary>
+    /// Evento para quando tiver uma cena de Interface Gráfica carregando.
+    /// </summary>
+    public static event Action<Control> OnUISceneLoaded;
+    /// <summary>
+    /// Evento para quando tiver uma cena de Interface Gráfica descarregando.
+    /// </summary>
+    public static event Action<Control> OnUISceneUnloading;
+    #endregion
+
     #region Singleton Pattern
     public static SceneManager Instance { get; private set; }
 
@@ -145,6 +166,8 @@ public sealed partial class SceneManager : Node
 
         // Instance and add the new scene
         var newSceneInstance = newScene.Instantiate<Node2D>();
+        OnScene2DLoaded.Invoke(newSceneInstance);
+
         sceneNode.AddChild(newSceneInstance);
     }
 
@@ -178,6 +201,8 @@ public sealed partial class SceneManager : Node
 
         // Instance and add the new UI scene
         var newSceneInstance = newScene.Instantiate<Control>();
+        OnUISceneLoaded.Invoke(newSceneInstance);
+
         uiNode.AddChild(newSceneInstance);
     }
     #endregion
@@ -197,6 +222,7 @@ public sealed partial class SceneManager : Node
 
         foreach (Node child in sceneNode.GetChildren())
         {
+            OnScene2DUnloading.Invoke(child as Node2D);
             child.QueueFree();
         }
     }
@@ -215,6 +241,7 @@ public sealed partial class SceneManager : Node
 
         foreach (Node child in uiNode.GetChildren())
         {
+            OnUISceneUnloading.Invoke(child as Control);
             child.QueueFree();
         }
     }
