@@ -166,7 +166,7 @@ public sealed partial class SceneManager : Node
 
         // Instance and add the new scene
         var newSceneInstance = newScene.Instantiate<Node2D>();
-        OnScene2DLoaded.Invoke(newSceneInstance);
+        OnScene2DLoaded?.Invoke(newSceneInstance);
 
         sceneNode.AddChild(newSceneInstance);
     }
@@ -201,7 +201,7 @@ public sealed partial class SceneManager : Node
 
         // Instance and add the new UI scene
         var newSceneInstance = newScene.Instantiate<Control>();
-        OnUISceneLoaded.Invoke(newSceneInstance);
+        OnUISceneLoaded?.Invoke(newSceneInstance);
 
         uiNode.AddChild(newSceneInstance);
     }
@@ -222,7 +222,7 @@ public sealed partial class SceneManager : Node
 
         foreach (Node child in sceneNode.GetChildren())
         {
-            OnScene2DUnloading.Invoke(child as Node2D);
+            OnScene2DUnloading?.Invoke(child as Node2D);
             child.QueueFree();
         }
     }
@@ -241,7 +241,7 @@ public sealed partial class SceneManager : Node
 
         foreach (Node child in uiNode.GetChildren())
         {
-            OnUISceneUnloading.Invoke(child as Control);
+            OnUISceneUnloading?.Invoke(child as Control);
             child.QueueFree();
         }
     }
