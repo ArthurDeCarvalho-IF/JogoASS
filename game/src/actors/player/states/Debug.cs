@@ -9,7 +9,7 @@ public partial class Debug : PlayerState
         base.Enter();   
         PlayerRef.Sprite.Play("debug");
 	}
-    public override void Update(double delta)
+    public override void Update(double delta) 
     {
         if (PlayerRef.DebugMode) Machine.TransitionTo("idle");
         if (PlayerRef.back) {

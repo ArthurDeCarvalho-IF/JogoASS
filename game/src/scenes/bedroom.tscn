@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://omdq3fagkp31" path="res://src/actors/player/player.tscn" id="3_f8lrb"]
 [ext_resource type="Texture2D" uid="uid://cir51y3fjljbr" path="res://assets/sprites/ui/fundo_preto.png" id="4_wc6k2"]
 [ext_resource type="PackedScene" uid="uid://dtwxoaovknh1g" path="res://src/actors/doors/door.tscn" id="5_1onhx"]
+[ext_resource type="Script" uid="uid://b1e6hxv08yi66" path="res://src/actors/DialogueInteractable.cs" id="6_vfvo3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q38y0"]
 texture = ExtResource("1_xqkn5")
@@ -489,6 +490,8 @@ sources/0 = SubResource("TileSetAtlasSource_ys6lw")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1onhx"]
 size = Vector2(16, 3)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1onhx"]
+
 [node name="Bedroom" type="Node2D" unique_id=1351093577]
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=2027011716]
@@ -536,3 +539,13 @@ targetScene = "uid://b6vhmj01xhvl5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/Door" unique_id=1213242249]
 shape = SubResource("RectangleShape2D_1onhx")
+
+[node name="AreaDiálogo2D" type="Area2D" parent="." unique_id=676715378]
+position = Vector2(72, -54)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("6_vfvo3")
+DialogueStartId = "Objeto_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDiálogo2D" unique_id=455105286]
+shape = SubResource("CircleShape2D_1onhx")

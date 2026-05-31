@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://du3uuog0aegou"]
+
+[ext_resource type="FontFile" uid="uid://c0kf5k1t8veut" path="res://assets/fonts/m6x11plus.ttf" id="1_0rpar"]
+
+[sub_resource type="Gradient" id="Gradient_0rpar"]
+colors = PackedColorArray(0.24705882, 0.49803922, 0.95686275, 0.25882354, 0.08627451, 0.36862746, 0.96862745, 0.011764706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jghco"]
+gradient = SubResource("Gradient_0rpar")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_487pi"]
+texture = SubResource("GradientTexture2D_jghco")
+
+[node name="Dialoguebx" type="Control" unique_id=213778064]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=579438871]
+layer = 100
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=224705325]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -240.0
+offset_right = 640.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_487pi")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel" unique_id=153636439]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/MarginContainer" unique_id=1295996146]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_0rpar")
+theme_override_fonts/bold_font = ExtResource("1_0rpar")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+bbcode_enabled = true
+text = "[placeholder]"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer" unique_id=203978535]
+layout_mode = 2
+text = "Aperte \"E\" para concordar (teclado).
+Aperte \"A\" para concordar (xboca).
+"
+horizontal_alignment = 2

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c8tsnbo17h2uc" path="res://core/state_machine/StateMachine.cs" id="3_dmu6e"]
 [ext_resource type="Script" uid="uid://cel12hh6skpqm" path="res://src/actors/player/states/Run.cs" id="3_hod3v"]
 [ext_resource type="Script" uid="uid://dlmmqs3sb735t" path="res://src/actors/player/states/Debug.cs" id="4_dmu6e"]
+[ext_resource type="Script" uid="uid://phv6spk635sx" path="res://src/actors/player/states/Talking.cs" id="5_pj4dc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hod3v"]
 atlas = ExtResource("1_1h0t4")
@@ -73,3 +74,6 @@ script = ExtResource("3_hod3v")
 
 [node name="Debug" type="Node" parent="StateMachine" unique_id=854505384]
 script = ExtResource("4_dmu6e")
+
+[node name="Talking" type="Node" parent="StateMachine"]
+script = ExtResource("5_pj4dc")
