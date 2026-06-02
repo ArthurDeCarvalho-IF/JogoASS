@@ -60,7 +60,7 @@ autowrap_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer" unique_id=203978535]
 layout_mode = 2
-text = "Aperte \"E\" para concordar (teclado).
-Aperte \"A\" para concordar (xboca).
+text = "Pressione	\"E\" para continuar (teclado).
+Pressione	\"A\" para continuar (xboca).
 "
 horizontal_alignment = 2

@@ -1,24 +1,24 @@
 [
-    {
-        "Id": "Objeto_1",
-        "nome_npc": "Jobson",
-        "fala": "Nossa, que vaso lindo!",
-        "escolhas": [
-            { "nextId": "Objeto_2" }
-        ]
-    },
-    {
-        "Id": "Objeto_2",
-        "nome_npc": "Jobson",
-        "fala": "Minha vó tinha um igualzinho, só que era azul...",
-        "escolhas": [ 
-            { "nextId": "objeto_fala_fim" }
-        ]
-    },
-    {
-        "Id": "objeto_fala_fim",
-        "nome_npc": "Jobson",
-        "fala": "Tchau vaso!",
-        "escolhas": []
-    }
+	{
+		"Id": "Objeto_1",
+		"nome_npc": "Caboclo",
+		"fala": "Nossa, que vaso lindo!",
+		"escolhas": [
+			{ "nextId": "Objeto_2" }
+		]
+	},
+	{
+		"Id": "Objeto_2",
+		"nome_npc": "Jobson",
+		"fala": "Minha vó tinha um igualzinho, só que era azul...",
+		"escolhas": [ 
+			{ "nextId": "objeto_fala_fim" }
+		]
+	},
+	{
+		"Id": "objeto_fala_fim",
+		"nome_npc": "Jobson",
+		"fala": "Tchau vaso!",
+		"escolhas": []
+	}
 ]
