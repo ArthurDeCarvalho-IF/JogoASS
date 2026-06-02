@@ -17,8 +17,9 @@ config/icon="res://assets/sprites/icon.svg"
 
 [autoload]
 
-DoorManager="*uid://d31ku3xd7gijr"
+GameManager="*uid://culuuhnvmfwaj"
 SceneManager="*uid://fu7e7uqq2i1i"
+DoorsManager="*uid://d31ku3xd7gijr"
 UserDataManager="*uid://de4x56yvxyv1"
 
 [display]
