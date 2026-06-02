@@ -1,20 +1,23 @@
 using Godot;
-using System;
-using System.Numerics;
 
-public partial class Run : PlayerState
+
+public partial class Walk : PlayerState
 {
 	public override void Enter()
 	{
         base.Enter();
-        PlayerRef.Sprite.Play("run");
+        PlayerRef._animStateMachine.Travel("Walk");
 	}
     public override void Update(double delta)
     {
         if (PlayerRef == null) return;
         if (PlayerRef.DebugMode) Machine.TransitionTo("debug");
-        if (PlayerRef.direction == Godot.Vector2.Zero) Machine.TransitionTo("idle"); 
-        
+
+        if (PlayerRef.direction == Vector2.Zero) Machine.TransitionTo("idle");
+        else {
+            PlayerRef._animTree.Set("parameters/Walk/blend_position", PlayerRef.direction);
+            PlayerRef._animTree.Set("parameters/Idle/blend_position", PlayerRef.direction);   
+        }
     }
     public override void PhysicsUpdate(double delta)
     {

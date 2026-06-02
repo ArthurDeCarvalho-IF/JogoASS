@@ -7,7 +7,6 @@ public partial class Debug : PlayerState
 	public override void Enter()
 	{
         base.Enter();   
-        PlayerRef.Sprite.Play("debug");
 	}
     public override void Update(double delta)
     {
@@ -33,7 +32,7 @@ public partial class Debug : PlayerState
     }
     private void onCollision(bool button)
     {
-        PlayerRef.Collision.SetDeferred(CollisionShape2D.PropertyName.Disabled, !button);
+        PlayerRef._collision.SetDeferred(CollisionShape2D.PropertyName.Disabled, !button);
     }
     private void RestartScene()
 	{
